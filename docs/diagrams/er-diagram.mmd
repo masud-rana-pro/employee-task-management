@@ -1,0 +1,27 @@
+erDiagram
+    USERS ||--o{ USERS : "manages (manager_id)"
+    USERS ||--o{ TASKS : "is assigned (assigned_to)"
+    USERS ||--o{ TASKS : "creates (assigned_by)"
+
+    USERS {
+        BIGINT id PK
+        VARCHAR_100 full_name
+        VARCHAR_150 email UK
+        VARCHAR_255 password "BCrypt hash"
+        ENUM role "ADMIN, MANAGER, EMPLOYEE"
+        BIGINT manager_id FK "nullable"
+        DATETIME created_at
+        BOOLEAN active "false = soft deleted"
+    }
+    TASKS {
+        BIGINT id PK
+        VARCHAR_200 title
+        TEXT description
+        ENUM status "PENDING, IN_PROGRESS, DONE"
+        ENUM priority "LOW, MEDIUM, HIGH"
+        DATE deadline
+        BIGINT assigned_to FK
+        BIGINT assigned_by FK
+        DATETIME created_at
+        DATETIME updated_at
+    }

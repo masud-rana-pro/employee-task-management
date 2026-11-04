@@ -1,0 +1,89 @@
+classDiagram
+    direction TB
+
+    class Role {
+        <<enumeration>>
+        ADMIN
+        MANAGER
+        EMPLOYEE
+    }
+    class TaskStatus {
+        <<enumeration>>
+        PENDING
+        IN_PROGRESS
+        DONE
+        +next() TaskStatus
+        +canMoveTo(target) boolean
+    }
+    class TaskPriority {
+        <<enumeration>>
+        LOW
+        MEDIUM
+        HIGH
+    }
+
+    class User {
+        -Long id
+        -String fullName
+        -String email
+        -String password
+        -Role role
+        -User manager
+        -LocalDateTime createdAt
+        -boolean active
+    }
+    class Task {
+        -Long id
+        -String title
+        -String description
+        -TaskStatus status
+        -TaskPriority priority
+        -LocalDate deadline
+        -User assignedTo
+        -User assignedBy
+        -LocalDateTime createdAt
+        -LocalDateTime updatedAt
+    }
+    User "0..1" <-- "*" User : manager
+    User "1" <-- "*" Task : assignedTo
+    User "1" <-- "*" Task : assignedBy
+    User --> Role
+    Task --> TaskStatus
+    Task --> TaskPriority
+
+    class AuthController
+    class UserController
+    class TaskController
+    class DashboardController
+    class ReportController
+    class AuthService
+    class UserService
+    class TaskService
+    class DashboardService
+    class ReportService
+    class PdfReportGenerator
+    class UserRepository { <<interface>> }
+    class TaskRepository { <<interface>> }
+    class JwtService
+    class JwtAuthenticationFilter
+    class SecurityConfig
+    class GlobalExceptionHandler
+
+    AuthController --> AuthService
+    AuthController --> UserService
+    UserController --> UserService
+    TaskController --> TaskService
+    DashboardController --> DashboardService
+    ReportController --> ReportService
+    AuthService --> JwtService
+    UserService --> UserRepository
+    TaskService --> TaskRepository
+    TaskService --> UserRepository
+    DashboardService --> TaskRepository
+    DashboardService --> UserRepository
+    ReportService --> TaskRepository
+    ReportService --> PdfReportGenerator
+    JwtAuthenticationFilter --> JwtService
+    SecurityConfig --> JwtAuthenticationFilter
+    UserRepository ..> User
+    TaskRepository ..> Task

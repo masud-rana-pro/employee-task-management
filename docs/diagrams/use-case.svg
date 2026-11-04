@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="940" font-family="Helvetica,Arial,sans-serif" font-size="14">
+<rect width="100%" height="100%" fill="white"/>
+<rect x="300" y="30" width="760" height="900" fill="#fafafa" stroke="#333" stroke-width="1.5"/>
+<text x="680.0" y="55" text-anchor="middle" font-weight="bold" font-size="16">Mini Employee &amp; Task Management System</text>
+<line x1="135" y1="395.4" x2="340" y2="114" stroke="#555" stroke-width="1"/>
+<line x1="135" y1="565.4" x2="340" y2="114" stroke="#555" stroke-width="1"/>
+<line x1="135" y1="735.4" x2="340" y2="114" stroke="#555" stroke-width="1"/>
+<line x1="135" y1="395.4" x2="340" y2="176" stroke="#555" stroke-width="1"/>
+<line x1="135" y1="565.4" x2="340" y2="176" stroke="#555" stroke-width="1"/>
+<line x1="135" y1="735.4" x2="340" y2="176" stroke="#555" stroke-width="1"/>
+<line x1="135" y1="395.4" x2="340" y2="238" stroke="#555" stroke-width="1"/>
+<line x1="135" y1="395.4" x2="340" y2="300" stroke="#555" stroke-width="1"/>
+<line x1="135" y1="395.4" x2="340" y2="362" stroke="#555" stroke-width="1"/>
+<line x1="135" y1="395.4" x2="340" y2="424" stroke="#555" stroke-width="1"/>
+<line x1="135" y1="395.4" x2="340" y2="486" stroke="#555" stroke-width="1"/>
+<line x1="135" y1="565.4" x2="340" y2="486" stroke="#555" stroke-width="1"/>
+<line x1="135" y1="395.4" x2="340" y2="548" stroke="#555" stroke-width="1"/>
+<line x1="135" y1="565.4" x2="340" y2="548" stroke="#555" stroke-width="1"/>
+<line x1="135" y1="565.4" x2="340" y2="610" stroke="#555" stroke-width="1"/>
+<line x1="135" y1="395.4" x2="340" y2="672" stroke="#555" stroke-width="1"/>
+<line x1="135" y1="565.4" x2="340" y2="672" stroke="#555" stroke-width="1"/>
+<line x1="135" y1="395.4" x2="340" y2="734" stroke="#555" stroke-width="1"/>
+<line x1="135" y1="565.4" x2="340" y2="734" stroke="#555" stroke-width="1"/>
+<line x1="135" y1="735.4" x2="340" y2="796" stroke="#555" stroke-width="1"/>
+<line x1="135" y1="735.4" x2="340" y2="858" stroke="#555" stroke-width="1"/>
+<ellipse cx="680.0" cy="114" rx="340.0" ry="24" fill="#eef3ff" stroke="#2c4a8c" stroke-width="1.5"/>
+<text x="680.0" y="119" text-anchor="middle">Login</text>
+<ellipse cx="680.0" cy="176" rx="340.0" ry="24" fill="#eef3ff" stroke="#2c4a8c" stroke-width="1.5"/>
+<text x="680.0" y="181" text-anchor="middle">View role-based dashboard</text>
+<ellipse cx="680.0" cy="238" rx="340.0" ry="24" fill="#eef3ff" stroke="#2c4a8c" stroke-width="1.5"/>
+<text x="680.0" y="243" text-anchor="middle">Manage users (create / edit / delete / change role)</text>
+<ellipse cx="680.0" cy="300" rx="340.0" ry="24" fill="#eef3ff" stroke="#2c4a8c" stroke-width="1.5"/>
+<text x="680.0" y="305" text-anchor="middle">Search users</text>
+<ellipse cx="680.0" cy="362" rx="340.0" ry="24" fill="#eef3ff" stroke="#2c4a8c" stroke-width="1.5"/>
+<text x="680.0" y="367" text-anchor="middle">View all tasks, filter by user / role</text>
+<ellipse cx="680.0" cy="424" rx="340.0" ry="24" fill="#eef3ff" stroke="#2c4a8c" stroke-width="1.5"/>
+<text x="680.0" y="429" text-anchor="middle">Delete task</text>
+<ellipse cx="680.0" cy="486" rx="340.0" ry="24" fill="#eef3ff" stroke="#2c4a8c" stroke-width="1.5"/>
+<text x="680.0" y="491" text-anchor="middle">Assign task to employee</text>
+<ellipse cx="680.0" cy="548" rx="340.0" ry="24" fill="#eef3ff" stroke="#2c4a8c" stroke-width="1.5"/>
+<text x="680.0" y="553" text-anchor="middle">Edit task</text>
+<ellipse cx="680.0" cy="610" rx="340.0" ry="24" fill="#eef3ff" stroke="#2c4a8c" stroke-width="1.5"/>
+<text x="680.0" y="615" text-anchor="middle">View tasks I assigned (progress)</text>
+<ellipse cx="680.0" cy="672" rx="340.0" ry="24" fill="#eef3ff" stroke="#2c4a8c" stroke-width="1.5"/>
+<text x="680.0" y="677" text-anchor="middle">Filter tasks by status / priority / assignee</text>
+<ellipse cx="680.0" cy="734" rx="340.0" ry="24" fill="#eef3ff" stroke="#2c4a8c" stroke-width="1.5"/>
+<text x="680.0" y="739" text-anchor="middle">Download PDF report (all / own team)</text>
+<ellipse cx="680.0" cy="796" rx="340.0" ry="24" fill="#eef3ff" stroke="#2c4a8c" stroke-width="1.5"/>
+<text x="680.0" y="801" text-anchor="middle">View my tasks</text>
+<ellipse cx="680.0" cy="858" rx="340.0" ry="24" fill="#eef3ff" stroke="#2c4a8c" stroke-width="1.5"/>
+<text x="680.0" y="863" text-anchor="middle">Update my task status (PENDING &gt; IN_PROGRESS &gt; DONE)</text>
+<circle cx="110" cy="360.4" r="14" fill="white" stroke="#222" stroke-width="2"/>
+<line x1="110" y1="374.4" x2="110" y2="415.4" stroke="#222" stroke-width="2"/>
+<line x1="86" y1="387.4" x2="134" y2="387.4" stroke="#222" stroke-width="2"/>
+<line x1="110" y1="415.4" x2="90" y2="450.4" stroke="#222" stroke-width="2"/>
+<line x1="110" y1="415.4" x2="130" y2="450.4" stroke="#222" stroke-width="2"/>
+<text x="110" y="473.4" text-anchor="middle" font-weight="bold">Admin</text>
+<circle cx="110" cy="530.4" r="14" fill="white" stroke="#222" stroke-width="2"/>
+<line x1="110" y1="544.4" x2="110" y2="585.4" stroke="#222" stroke-width="2"/>
+<line x1="86" y1="557.4" x2="134" y2="557.4" stroke="#222" stroke-width="2"/>
+<line x1="110" y1="585.4" x2="90" y2="620.4" stroke="#222" stroke-width="2"/>
+<line x1="110" y1="585.4" x2="130" y2="620.4" stroke="#222" stroke-width="2"/>
+<text x="110" y="643.4" text-anchor="middle" font-weight="bold">Manager</text>
+<circle cx="110" cy="700.4" r="14" fill="white" stroke="#222" stroke-width="2"/>
+<line x1="110" y1="714.4" x2="110" y2="755.4" stroke="#222" stroke-width="2"/>
+<line x1="86" y1="727.4" x2="134" y2="727.4" stroke="#222" stroke-width="2"/>
+<line x1="110" y1="755.4" x2="90" y2="790.4" stroke="#222" stroke-width="2"/>
+<line x1="110" y1="755.4" x2="130" y2="790.4" stroke="#222" stroke-width="2"/>
+<text x="110" y="813.4" text-anchor="middle" font-weight="bold">Employee</text>
+</svg>

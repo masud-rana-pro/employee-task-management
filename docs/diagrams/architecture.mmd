@@ -1,0 +1,8 @@
+flowchart LR
+    B[Browser: Angular 13 on Netlify] -- "HTTPS + Bearer JWT" --> F
+    subgraph API["Spring Boot (Render)"]
+      F[JwtAuthenticationFilter] --> C[Controller @PreAuthorize]
+      C --> S[Service: business rules] --> R[Repository: Spring Data JPA]
+      C -. errors .-> E[GlobalExceptionHandler]
+    end
+    R -- "JDBC + SSL" --> D[(MySQL 8: Aiven)]
