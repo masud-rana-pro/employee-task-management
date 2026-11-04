@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { Role } from '../../core/models/models';
 import { AuthService } from '../../core/services/auth.service';
@@ -17,9 +19,21 @@ interface NavLink {
 })
 export class NavbarComponent {
   readonly session$ = this.auth.session$;
+  /**
+   * The menu links are computed ONCE per login/logout (not in the template).
+   * A method call in *ngFor that returns a new array on every change detection makes Angular
+   * re-create all <a routerLinkActive> elements again and again - an endless loop that freezes the page.
+   */
+  readonly links$: Observable<NavLink[]> = this.auth.session$.pipe(
+    map(session => (session ? this.linksFor(session.role) : []))
+  );
   collapsed = true;
 
   constructor(private readonly auth: AuthService) {}
+
+  trackByPath(_index: number, link: NavLink): string {
+    return link.path;
+  }
 
   /** The menu is only a convenience - every API call is checked again on the backend. */
   linksFor(role: Role): NavLink[] {
