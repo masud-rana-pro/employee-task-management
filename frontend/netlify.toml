@@ -1,0 +1,17 @@
+# Netlify configuration (the Netlify site's "base directory" is "frontend").
+# Set the API_URL environment variable in Netlify, e.g. https://my-backend.onrender.com/api
+
+[build]
+  command = "npm run build:prod"
+  publish = "dist/frontend"
+
+[build.environment]
+  # Angular 13 needs Node 14 or 16.
+  NODE_VERSION = "16"
+
+# Single page application: every unknown path must serve index.html,
+# otherwise refreshing /users or /tasks would give a 404.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

@@ -1,0 +1,91 @@
+// Global styles. Bootstrap 5 and Bootstrap Icons are added in angular.json ("styles").
+
+:root {
+  --app-bg: #f4f6fb;
+  --app-radius: 0.75rem;
+}
+
+body {
+  background-color: var(--app-bg);
+  color: #212529;
+}
+
+.card {
+  border: 0;
+  border-radius: var(--app-radius);
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.08);
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+// ---------- dashboard cards ----------
+.stat-card {
+  border-left: 4px solid var(--bs-secondary);
+
+  .stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .stat-icon {
+    font-size: 1.8rem;
+    opacity: 0.35;
+  }
+
+  &.stat-primary { border-left-color: var(--bs-primary); }
+  &.stat-success { border-left-color: var(--bs-success); }
+  &.stat-warning { border-left-color: var(--bs-warning); }
+  &.stat-info    { border-left-color: var(--bs-info); }
+  &.stat-secondary { border-left-color: var(--bs-secondary); }
+}
+
+// ---------- tables ----------
+.table-card .table {
+  margin-bottom: 0;
+
+  thead th {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #6c757d;
+    border-bottom-width: 1px;
+    white-space: nowrap;
+  }
+
+  td, th {
+    vertical-align: middle;
+  }
+}
+
+.text-truncate-cell {
+  max-width: 280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.overdue {
+  color: var(--bs-danger);
+  font-weight: 600;
+}
+
+// ---------- login ----------
+.login-wrapper {
+  min-height: calc(100vh - 8rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
