@@ -29,7 +29,8 @@ import java.util.List;
 /**
  * Stateless JWT security.
  * <ul>
- *   <li>URL level: only login and health are public, everything else needs a valid token.</li>
+ *   <li>URL level: only login and health are public, everything else needs a valid token; the write
+ *       endpoints also carry the role rule here (so 403 wins over body validation).</li>
  *   <li>Method level: {@code @PreAuthorize} on every controller method decides WHICH ROLE may call it
  *       ({@code @EnableMethodSecurity} switches that on).</li>
  * </ul>
@@ -66,6 +67,16 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // CORS pre-flight
                         .requestMatchers("/api/auth/login", "/api/health").permitAll()
+                        // Defense in depth: the same role rules as the @PreAuthorize annotations, checked BEFORE the
+                        // request body is parsed - so a forbidden role always gets 403, even with an invalid body.
+                        .requestMatchers("/api/auth/register").hasRole("ADMIN")
+                        .requestMatchers("/api/users/assignees").hasAnyRole("ADMIN", "MANAGER")
+                        .requestMatchers("/api/users", "/api/users/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/tasks").hasAnyRole("ADMIN", "MANAGER")
+                        .requestMatchers(HttpMethod.PUT, "/api/tasks/*/status").hasRole("EMPLOYEE")
+                        .requestMatchers(HttpMethod.PUT, "/api/tasks/*").hasAnyRole("ADMIN", "MANAGER")
+                        .requestMatchers(HttpMethod.DELETE, "/api/tasks/*").hasRole("ADMIN")
+                        .requestMatchers("/api/reports/**").hasAnyRole("ADMIN", "MANAGER")
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 

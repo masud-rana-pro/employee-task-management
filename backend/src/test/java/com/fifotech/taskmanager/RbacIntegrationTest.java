@@ -237,6 +237,16 @@ class RbacIntegrationTest {
     }
 
     @Test
+    void forbiddenRoleGets403EvenWithAnInvalidBody() throws Exception {
+        mockMvc.perform(post("/api/tasks").header("Authorization", bearer(emp1))
+                        .contentType(MediaType.APPLICATION_JSON).content("{}"))
+                .andExpect(status().isForbidden());
+        mockMvc.perform(post("/api/users").header("Authorization", bearer(manager1))
+                        .contentType(MediaType.APPLICATION_JSON).content("{}"))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
     void taskCannotBeAssignedToAManager() throws Exception {
         mockMvc.perform(post("/api/tasks").header("Authorization", bearer(admin))
                         .contentType(MediaType.APPLICATION_JSON).content(taskBody("Bad", manager2.getId())))
