@@ -110,6 +110,32 @@ $sidebar-bg: #1b2430;
   z-index: 1035;
 }
 
+// Top bar above the page content (large screens only; small screens use the mobile bar).
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  height: 64px;
+  padding: 0 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-bottom: 1px solid #e5e8ef;
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bs-primary);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+}
+
 // Small screens: the sidebar is hidden until the menu button opens it.
 @media (max-width: 991.98px) {
   .sidebar { transform: translateX(-100%); }
