@@ -1,0 +1,14 @@
+<h1 class="page-title mb-4">Reports</h1>
+<div class="card">
+  <div class="card-body">
+    <h2 class="h6">Task report (PDF)</h2>
+    <p class="text-muted">
+      <ng-container *ngIf="auth.role === 'ADMIN'">The report contains all tasks in the system.</ng-container>
+      <ng-container *ngIf="auth.role === 'MANAGER'">The report contains the tasks of the employees in your own team.</ng-container>
+    </p>
+    <button type="button" class="btn btn-dark" (click)="download()" [disabled]="downloading">
+      <span *ngIf="downloading" class="spinner-border spinner-border-sm me-2"></span>
+      <i *ngIf="!downloading" class="bi bi-file-earmark-pdf me-2"></i>Download PDF
+    </button>
+  </div>
+</div>
