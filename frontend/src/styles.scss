@@ -21,6 +21,107 @@ body {
   font-weight: 600;
 }
 
+h2 > .text-muted.fw-normal {
+  margin-left: 0.35rem;
+}
+
+// ---------- application shell: sidebar layout ----------
+$sidebar-width: 250px;
+$sidebar-bg: #1b2430;
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: $sidebar-width;
+  background: $sidebar-bg;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  z-index: 1040;
+  overflow-y: auto;
+  transition: transform 0.25s ease;
+
+  .sidebar-brand {
+    display: block;
+    padding: 1.25rem 1.5rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .sidebar-nav {
+    flex: 1;
+    padding: 1rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0.9rem;
+    border-radius: 0.5rem;
+    color: rgba(255, 255, 255, 0.72);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+
+    i { font-size: 1.1rem; }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    &.active {
+      background: var(--bs-primary);
+      color: #fff;
+    }
+  }
+
+  .sidebar-user {
+    padding: 1rem 1.25rem 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+.mobile-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: $sidebar-bg;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  z-index: 1030;
+}
+
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1035;
+}
+
+// Small screens: the sidebar is hidden until the menu button opens it.
+@media (max-width: 991.98px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .has-sidebar .app-content { padding-top: 56px; }
+}
+
+// Large screens: leave room for the fixed sidebar.
+@media (min-width: 992px) {
+  .has-sidebar .app-content { margin-left: $sidebar-width; }
+}
+
 // ---------- dashboard cards ----------
 .stat-card {
   border-left: 4px solid var(--bs-secondary);
