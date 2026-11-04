@@ -1,0 +1,82 @@
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+  <h1 class="page-title mb-0">{{ isAdmin ? 'All tasks' : 'Tasks I assigned' }}</h1>
+  <a routerLink="/tasks/new" class="btn btn-dark"><i class="bi bi-plus-lg me-1"></i>New task</a>
+</div>
+
+<div class="card table-card">
+  <div class="card-body border-bottom">
+    <div class="row g-2">
+      <div class="col-12 col-md-3">
+        <input type="search" class="form-control" placeholder="Search title" [(ngModel)]="filters.search"
+               (ngModelChange)="onSearchTyped()" />
+      </div>
+      <div class="col-6 col-md-2">
+        <select class="form-select" [(ngModel)]="filters.status" (ngModelChange)="applyFilters()" aria-label="Status">
+          <option value="">All statuses</option>
+          <option *ngFor="let s of statuses" [value]="s">{{ s.replace('_', ' ') }}</option>
+        </select>
+      </div>
+      <div class="col-6 col-md-2">
+        <select class="form-select" [(ngModel)]="filters.priority" (ngModelChange)="applyFilters()" aria-label="Priority">
+          <option value="">All priorities</option>
+          <option *ngFor="let p of priorities" [value]="p">{{ p }}</option>
+        </select>
+      </div>
+      <div class="col-6 col-md-2">
+        <select class="form-select" [(ngModel)]="filters.assigneeId" (ngModelChange)="applyFilters()" aria-label="Assignee">
+          <option value="">All assignees</option>
+          <option *ngFor="let u of assignees" [ngValue]="u.id">{{ u.fullName }}</option>
+        </select>
+      </div>
+      <div class="col-6 col-md-2" *ngIf="isAdmin">
+        <select class="form-select" [(ngModel)]="filters.assignedByRole" (ngModelChange)="applyFilters()" aria-label="Assigned by role">
+          <option value="">Assigned by: any</option>
+          <option value="MANAGER">Assigned by managers</option>
+          <option value="ADMIN">Assigned by admins</option>
+        </select>
+      </div>
+      <div class="col-auto">
+        <button type="button" class="btn btn-outline-secondary" (click)="reset()" title="Clear filters">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Title</th><th>Assigned to</th><th *ngIf="isAdmin">Assigned by</th>
+          <th>Priority</th><th>Status</th><th>Deadline</th><th class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="loading"><td [attr.colspan]="isAdmin ? 7 : 6" class="text-center py-4"><div class="spinner-border spinner-border-sm"></div></td></tr>
+        <tr *ngIf="!loading && tasks.length === 0"><td [attr.colspan]="isAdmin ? 7 : 6" class="text-center text-muted py-4">No tasks found.</td></tr>
+        <tr *ngFor="let t of tasks">
+          <td class="text-truncate-cell" [title]="t.description || ''">{{ t.title }}</td>
+          <td>{{ t.assignedToName }}</td>
+          <td *ngIf="isAdmin">{{ t.assignedByName }}</td>
+          <td><app-priority-badge [priority]="t.priority"></app-priority-badge></td>
+          <td><app-status-badge [status]="t.status"></app-status-badge></td>
+          <td [class.overdue]="isOverdue(t)">{{ t.deadline ? (t.deadline | date: 'dd MMM yyyy') : '-' }}</td>
+          <td class="text-end text-nowrap">
+            <a class="btn btn-sm btn-outline-secondary me-1" [routerLink]="['/tasks', t.id, 'edit']" title="Edit">
+              <i class="bi bi-pencil"></i>
+            </a>
+            <button *ngIf="isAdmin" type="button" class="btn btn-sm btn-outline-danger" (click)="remove(t)" title="Delete">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card-body d-flex justify-content-between align-items-center" *ngIf="total > 0">
+    <span class="text-muted small">{{ total }} task(s)</span>
+    <ngb-pagination [collectionSize]="total" [(page)]="page" [pageSize]="pageSize" [maxSize]="5"
+                    [boundaryLinks]="true" size="sm" class="mb-0" (pageChange)="load()"></ngb-pagination>
+  </div>
+</div>

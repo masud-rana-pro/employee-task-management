@@ -1,0 +1,46 @@
+<h1 class="page-title mb-3">{{ isEdit ? 'Edit task' : 'Assign a new task' }}</h1>
+
+<div *ngIf="loading" class="text-center py-5"><div class="spinner-border"></div></div>
+
+<div class="card" *ngIf="!loading" style="max-width: 720px">
+  <form class="card-body" [formGroup]="form" (ngSubmit)="save()" novalidate>
+    <div class="mb-3">
+      <label class="form-label" for="title">Title</label>
+      <input id="title" class="form-control" formControlName="title" [class.is-invalid]="invalid('title')" />
+      <div class="invalid-feedback">Title is required (max 200 characters).</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="description">Description</label>
+      <textarea id="description" rows="4" class="form-control" formControlName="description"
+                [class.is-invalid]="invalid('description')"></textarea>
+      <div class="invalid-feedback">Description must be at most 2000 characters.</div>
+    </div>
+    <div class="row g-3 mb-3">
+      <div class="col-md-6">
+        <label class="form-label" for="assignedTo">Assign to</label>
+        <select id="assignedTo" class="form-select" formControlName="assignedTo" [class.is-invalid]="invalid('assignedTo')">
+          <option [ngValue]="null" disabled>Select an employee</option>
+          <option *ngFor="let u of assignees" [ngValue]="u.id">{{ u.fullName }}</option>
+        </select>
+        <div class="invalid-feedback">Please choose an employee.</div>
+        <div class="form-text" *ngIf="assignees.length === 0">No employees available. Managers can only assign to their own team.</div>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label" for="priority">Priority</label>
+        <select id="priority" class="form-select" formControlName="priority">
+          <option *ngFor="let p of priorities" [value]="p">{{ p }}</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label class="form-label" for="deadline">Deadline</label>
+        <input id="deadline" type="date" class="form-control" formControlName="deadline" />
+      </div>
+    </div>
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-dark" [disabled]="saving">
+        <span *ngIf="saving" class="spinner-border spinner-border-sm me-2"></span>{{ isEdit ? 'Save changes' : 'Assign task' }}
+      </button>
+      <a routerLink="/tasks" class="btn btn-outline-secondary">Cancel</a>
+    </div>
+  </form>
+</div>

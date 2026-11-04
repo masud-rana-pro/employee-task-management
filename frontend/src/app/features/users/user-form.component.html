@@ -1,0 +1,44 @@
+<form [formGroup]="form" (ngSubmit)="save()" novalidate>
+  <div class="modal-header">
+    <h5 class="modal-title">{{ isEdit ? 'Edit user' : 'Add user' }}</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="mb-3">
+      <label class="form-label" for="fullName">Full name</label>
+      <input id="fullName" class="form-control" formControlName="fullName" [class.is-invalid]="invalid('fullName')" />
+      <div class="invalid-feedback">Full name is required (max 100 characters).</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="uemail">Email</label>
+      <input id="uemail" type="email" class="form-control" formControlName="email" [class.is-invalid]="invalid('email')" />
+      <div class="invalid-feedback">Enter a valid email address.</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="upassword">Password <span *ngIf="isEdit" class="text-muted small">(leave empty to keep)</span></label>
+      <input id="upassword" type="password" class="form-control" formControlName="password"
+             autocomplete="new-password" [class.is-invalid]="invalid('password')" />
+      <div class="invalid-feedback">Password must be 6 to 100 characters.</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="urole">Role</label>
+      <select id="urole" class="form-select" formControlName="role">
+        <option *ngFor="let r of roles" [value]="r">{{ r }}</option>
+      </select>
+    </div>
+    <div class="mb-1" *ngIf="isEmployee">
+      <label class="form-label" for="umanager">Manager</label>
+      <select id="umanager" class="form-select" formControlName="managerId">
+        <option [ngValue]="null">- none -</option>
+        <option *ngFor="let m of managers" [ngValue]="m.id">{{ m.fullName }}</option>
+      </select>
+      <div class="form-text">The employee's team. Managers can only assign tasks to their own team.</div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">Cancel</button>
+    <button type="submit" class="btn btn-dark" [disabled]="saving">
+      <span *ngIf="saving" class="spinner-border spinner-border-sm me-2"></span>Save
+    </button>
+  </div>
+</form>
