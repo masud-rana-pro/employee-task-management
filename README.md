@@ -14,9 +14,8 @@ data but see and may do different things. Access control is enforced **on the ba
 
 | | URL |
 |---|---|
-| Frontend (Netlify) | `<add your URL>` |
-| Backend (Render) | `<add your URL>` (open `/api/health` first - a free server sleeps and needs ~1 minute to wake up) |
-| Database | MySQL 8 on Aiven (free plan) |
+| Frontend (Netlify) | https://melodic-longma-2afe76.netlify.app |
+| Backend (Render) | https://task-management-api-a9n6.onrender.com (open `/api/health` first - a free server sleeps and needs ~1 minute to wake up) |
 
 ## Tech stack
 
